@@ -1,0 +1,8 @@
+.pagination {
+  padding: 0px auto;
+}
+
+.pagination > i {
+  color: white;
+  text-align: center;
+}

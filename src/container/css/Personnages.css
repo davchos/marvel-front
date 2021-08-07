@@ -1,0 +1,188 @@
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 280px) {
+  .personnages-content {
+    /* position: relative; */
+    /* top: 100px; */
+    display: flex;
+
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    /* margin: 0 auto; */
+    /* background: black; */
+    /* width: 100; */
+    overflow: scroll;
+    overflow-y: scroll;
+    margin: 0 auto;
+  }
+  #personnages-hide {
+    display: none;
+  }
+  .personnages-img {
+    object-fit: cover;
+    width: 100vw;
+    height: 70vh;
+    margin: 20px 0;
+    border-left: white solid 1px;
+    border-right: white solid 1px;
+
+    /* padding: 10px auto; */
+  }
+  .personnages-name {
+    border-left: white solid 1px;
+    border-right: white solid 1px;
+    font-size: 30px;
+    position: relative;
+    background: gray;
+    line-height: 40px;
+    /* left: 2px; */
+    bottom: 40px;
+    width: 100vw;
+    height: 40pxpx;
+    background: gray;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    /* padding-bottom: 30px; */
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  /* Rules */
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .personnages-container {
+    background-image: url("../../assets/wp2491613-marvel-comics-wallpapers.jpg");
+    background-repeat: no-repeat;
+
+    background-size: cover;
+    /* position: absolute; */
+    /* top: -100px; */
+    /* position: absolute; */
+  }
+  .personnages-content {
+    /* background-image: url("../../assets/wp2766831-marvel-comics-wallpapers.jpg"); */
+    /* background-repeat: no-repeat; */
+    /* object-fit: fill; */
+    /* background-position: center; */
+    /* background-size: cover; */
+
+    /* position: relative; */
+    /* top: 350px; */
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    /* justify-content: unset; */
+    width: 1140px;
+    /* margin: 0 auto; */
+    overflow: scroll;
+    overflow-y: auto;
+    /* height: 100vh; */
+    /* align-items: center; */
+
+    padding: 20px 20px;
+    /* background: black; */
+    /* justify-content: space-between; */
+  }
+
+  .disabledCursor {
+    cursor: default;
+  }
+  .personnages-content > div {
+    /*width: 150px;
+    height: 150px; */
+    padding: 5px 5px;
+    /* box-sizing: border-box; */
+    /* object-fit: fill;*/
+  }
+
+  .personnages-img {
+    object-fit: cover;
+    object-fit: cover;
+    width: 170px;
+    height: 260px;
+    /* width: 300px;
+    height: 400px;
+    margin: 2px 2px; */
+    border-left: none;
+    border-right: none;
+    margin: 20px 20px;
+    /* z-index: 100; */
+    transition: 0, 5 ease-in-out;
+    display: block;
+  }
+
+  /* .personnages-img:hover {
+    cursor: pointer;
+    display: none;
+  } */
+  /* .personnages-show:hover img {
+    display: none;
+    /* cursor: pointer; */
+  /* }  */
+
+  /* .personnages-show:hover + #personnages-hide {
+    display: block; */
+  /* cursor: pointer; */
+  /* } */
+  #personnages-hide {
+    /* padding-top: 10px; */
+    text-align: center;
+    display: none;
+    width: 170px;
+    height: 260px;
+    border-left: none;
+    border-right: none;
+    margin: 20px 20px;
+    background: white;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    /* z-index: 50; */
+  }
+  /* #personnages-hide :hover {
+    cursor: pointer;
+  } */
+  /* .personnages-img:hover {
+    cursor: pointer;
+  } */
+  /* .personnages-imghover img {
+    display: non;
+  } */
+  .personnages-name {
+    font-size: 15px;
+    position: relative;
+    background: lightgray;
+    line-height: 30px;
+    left: 20px;
+    bottom: 40px;
+    width: 170px;
+    height: 30px;
+    /* background: white; */
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    border-left: none;
+    border-right: none;
+    /* padding-bottom: 30px; */
+  }
+
+  .personnages-pagination {
+    width: 1140px;
+    margin: 0px auto;
+
+    /* padding-top: x; */
+    /* background: black; */
+    /* justify-content: center; */
+    /* border: black solid 1px; */
+    text-align: center;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  /* Rules */
+}
