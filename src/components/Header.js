@@ -67,31 +67,10 @@ const Header = ({ characterName, setCharacterName, setComicsName }) => {
       {(location.pathname === "/personnages" ||
         location.pathname === "/comics" ||
         location.pathname === "/") && (
-        <div
-          className="header-search"
-          // style={{
-          //   justifyContent: "center",
-          //   display: "flex",
-          //   marginTop: "30px",
-          // }}
-        >
-          <i
-            className="fas fa-search sm"
-            // style={{
-            //   background: "white",
-            //   borderStyle: "none",
-            //   border: "none",
-            //   padding: "1px 0 0 1px",
-            //   // marginTop: "10px",
-            // }}
-          ></i>
+        <div className="header-search">
+          <i className="fas fa-search sm"></i>
           <form>
-            <input
-              type="search"
-              value={value}
-              onChange={handleChange}
-              // style={{ border: "none", borderStyle: "none" }}
-            />
+            <input type="search" value={value} onChange={handleChange} />
           </form>
         </div>
       )}
