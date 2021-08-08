@@ -1,10 +1,10 @@
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 280px) {
-  /* body {
+  body {
     background: black;
-  } */
+  }
   .personnages-container {
-    margin-top: 10px;
+    /* margin-top: 10px; */
     background: black;
     /* background-image: url("../../assets/wp2491613-marvel-comics-wallpapers.jpg"); */
     /* background-repeat: no-repeat; */
