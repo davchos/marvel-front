@@ -19,7 +19,7 @@ const Header = ({ characterName, setCharacterName, setComicsName }) => {
   };
   return (
     <nav>
-      <div>
+      <div className="header-logo">
         <svg width="130" height="52" xmlns="http://www.w3.org/2000/svg">
           <rect fill="#EC1D24" width="100%" height="100%"></rect>
           <path
