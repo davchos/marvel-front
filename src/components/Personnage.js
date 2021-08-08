@@ -1,11 +1,17 @@
 import "./css/Personnage.css";
 import Header from "./Header";
 import axios from "axios";
+import Pagination from "./Pagination";
+import Image from "./Image";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const Personnage = () => {
   const { id } = useParams();
+  const [characterName, setCharacterName] = useState("");
+  const [totalPages, setTotalPages] = useState(1);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(100);
 
   // const [data, setData]
   const [isLoading, setIsLoading] = useState(true);
@@ -17,9 +23,9 @@ const Personnage = () => {
       try {
         const response = await axios.get(`http://localhost:3000/comics/${id}`);
         setData(response.data);
-
+        setTotalPages(Math.ceil(response.data.comics.length / limit));
         setIsLoading(false);
-        console.log(response);
+        console.log(response.data);
       } catch (error) {
         // Todo manage 4XX/5XX
         console.log(error);
@@ -32,24 +38,23 @@ const Personnage = () => {
     <span>En cours de chargement...</span>
   ) : (
     <div>
-      <Header />
-      <div className="personnage-content">
-        {data.comics.map((elem, index) => {
-          const image = elem.thumbnail.path + "." + elem.thumbnail.extension;
-          return (
-            <div>
-              <span key={elem._id}>{elem.title}</span>
-              <div key={index}>
-                <img
-                  key={index}
-                  className="personnage-img"
-                  src={image}
-                  alt="Character"
-                />
-              </div>
-            </div>
-          );
-        })}
+      <Header
+        setCharacterName={setCharacterName}
+        characterName={characterName}
+      />
+      <div className="personnages-container">
+        <div className="personnages-pagination">
+          {data.comics.length > 3 && (
+            <Pagination page={page} totalPages={totalPages} setPage={setPage} />
+          )}
+        </div>
+
+        <div className="personnages-content">
+          {data.comics &&
+            data.comics.map((elem, index) => {
+              return <Image elem={elem} key={elem._id} id={id} />;
+            })}
+        </div>
       </div>
     </div>
   );

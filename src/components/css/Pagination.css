@@ -6,3 +6,9 @@
   color: white;
   text-align: center;
 }
+
+.pagination span {
+  display: inline-block;
+  color: white;
+  margin: 0 10px 10px 10px;
+}

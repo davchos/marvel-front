@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
 import { useState } from "react";
 
-const Header = ({ characterName, setCharacterName, setTitle }) => {
+const Header = ({ characterName, setCharacterName, setComicsName }) => {
   const location = useLocation();
   const [value, setValue] = useState();
 
@@ -12,14 +12,13 @@ const Header = ({ characterName, setCharacterName, setTitle }) => {
     if (location.pathname === "/" || location.pathname === "/personnages") {
       console.log(location.path);
       setCharacterName(event.target.value);
-    } else if (location.pathname === "/cosmics") {
-      setTitle(event.target.value);
+    } else if (location.pathname === "/comics") {
+      setComicsName(event.target.value);
     }
     console.log(characterName);
   };
   return (
     <nav>
-      {/* <div className="personnages-svg"> */}
       <div>
         <svg width="130" height="52" xmlns="http://www.w3.org/2000/svg">
           <rect fill="#EC1D24" width="100%" height="100%"></rect>
@@ -33,13 +32,10 @@ const Header = ({ characterName, setCharacterName, setTitle }) => {
             d="M31.5 48V4H21.291l-3.64 22.735L14.102 4H4v44h8V26.792L15.577 48h4.229l3.568-21.208V48z"
           ></path>
         </svg>
-        {/* </div> */}
-
         <input type="checkbox" id="bars" />
         <label htmlFor="bars" className="menuMobile">
           <i className="fas fa-bars fa-2x" />
         </label>
-
         <ul>
           <li>
             <Link
@@ -59,33 +55,45 @@ const Header = ({ characterName, setCharacterName, setTitle }) => {
             </Link>
           </li>
           <li>
-            <Link to={{ pathname: "/" }} style={{ textDecoration: "none" }}>
+            <Link
+              to={{ pathname: "/favoris" }}
+              style={{ textDecoration: "none" }}
+            >
               <span>Favoris</span>
             </Link>
           </li>
         </ul>
       </div>
-      <div
-        style={{ justifyContent: "center", display: "flex", marginTop: "20px" }}
-      >
-        <i
-          className="fas fa-search sm"
+      {(location.pathname === "/personnages" ||
+        location.pathname === "/comics" ||
+        location.pathname === "/") && (
+        <div
           style={{
-            background: "white",
-            borderStyle: "none",
-            border: "none",
-            padding: "1px 0 0 1px",
+            justifyContent: "center",
+            display: "flex",
+            marginTop: "30px",
           }}
-        ></i>
-        <form>
-          <input
-            type="search"
-            value={value}
-            onChange={handleChange}
-            style={{ border: "none", borderStyle: "none" }}
-          />
-        </form>
-      </div>
+        >
+          <i
+            className="fas fa-search sm"
+            style={{
+              background: "white",
+              borderStyle: "none",
+              border: "none",
+              padding: "1px 0 0 1px",
+              // marginTop: "10px",
+            }}
+          ></i>
+          <form>
+            <input
+              type="search"
+              value={value}
+              onChange={handleChange}
+              style={{ border: "none", borderStyle: "none" }}
+            />
+          </form>
+        </div>
+      )}
     </nav>
   );
 };

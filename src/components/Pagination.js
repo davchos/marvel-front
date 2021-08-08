@@ -12,8 +12,10 @@ const Pagination = ({ page, totalPages, setPage }) => {
       <i
         onClick={handleClickPrev}
         className="far fa-arrow-alt-circle-left fa-3x"
-      />{" "}
-      {page}
+      />
+      <span>
+        {page} / {totalPages}
+      </span>
       <i
         onClick={handleClickNext}
         className="far fa-arrow-alt-circle-right fa-3x "

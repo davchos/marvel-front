@@ -1,25 +1,55 @@
 import "./css/Image.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 
-const Image = ({ elem }) => {
+const Image = ({ elem, id, setCookie }) => {
   const [description, setDescription] = useState({ display: "none" });
   const [image, setImage] = useState({ display: "block" });
   const [buttonDescription, setButtonDescription] =
     useState("Show description");
   const [buttonFavoris, setButtonFavoris] = useState("Add to favoris");
 
+  let location = useLocation();
+
   const picture = elem.thumbnail.path + "." + elem.thumbnail.extension;
 
   const handleClickButtonFavoris = (event) => {
-    if (!Cookies.get(`character-comics-${elem._id}`)) {
-      Cookies.set(`character-comics-${elem._id}`, elem._id);
-      setButtonFavoris("Remove from favoris");
-    } else {
-      Cookies.remove(`character-comics-${elem._id}`);
+    // console.log(Cookies.get());
+    if (location.pathname === "/personnages" || location.pathname === "/") {
+      if (!Cookies.get(`character-${elem._id}`)) {
+        Cookies.set(`character-${elem._id}`, JSON.stringify(elem));
+        setButtonFavoris("Remove from favoris");
+      } else {
+        Cookies.remove(`character-${elem._id}`);
+        setButtonFavoris("Add to favoris");
+      }
+    } else if (
+      location.pathname === "/comics" ||
+      location.pathname == `/personnage/${id}`
+    ) {
+      if (!Cookies.get(`comics-${elem._id}`)) {
+        Cookies.set(`comics-${elem._id}`, JSON.stringify(elem));
+        setButtonFavoris("Remove from favoris");
+      } else {
+        Cookies.remove(`comics-${elem._id}`);
+        setButtonFavoris("Add to favoris");
+      }
+    } else if (location.pathname == `/personnage/${id}`) {
+      if (!Cookies.get(`comics-${elem._id}`)) {
+        Cookies.set(`comics-${elem._id}`, JSON.stringify(elem));
+        setButtonFavoris("Remove from favoris");
+      } else {
+        Cookies.remove(`comics-${elem._id}`);
+        setButtonFavoris("Add to favoris");
+      }
+    } else if (location.pathname == `/favoris`) {
+      Cookies.remove(`comics-${elem._id}`);
+      Cookies.remove(`character-${elem._id}`);
       setButtonFavoris("Add to favoris");
+      setCookie(Cookies.get());
     }
+    console.log(Cookies.get());
   };
 
   const handleClickButtonDescription = (event) => {
@@ -34,11 +64,21 @@ const Image = ({ elem }) => {
     }
   };
 
-  //   const handleFavoris = ()=>{
-
-  //   }
+  const handleLink = (location) => {
+    if (
+      (location.pathname === "/personnages" || location.pathname === "/") &&
+      elem.comics.length !== 0
+    ) {
+      return { ...location, pathname: `/personnage/${elem._id}` };
+    } else if (location.pathname === "/comics") {
+      return;
+    }
+  };
   useEffect(() => {
-    if (Cookies.get(`character-comics-${elem._id}`)) {
+    if (
+      Cookies.get(`character-${elem._id}`) ||
+      Cookies.get(`comics-${elem._id}`)
+    ) {
       setButtonFavoris("Remove from favoris");
     } else {
       setButtonFavoris("Add to favoris");
@@ -49,10 +89,8 @@ const Image = ({ elem }) => {
       <div className="image-button">
         <button
           onClick={handleClickButtonDescription}
-          //   disabled={elem.description.length === 0 ? true : false}
           style={{
-            // visibility: elem.description.length === 0 ? "hidden" : "visible",
-            display: elem.description.length === 0 ? "none" : "block",
+            display: !elem.description ? "none" : "block",
           }}
         >
           {buttonDescription}
@@ -60,51 +98,27 @@ const Image = ({ elem }) => {
         <button onClick={handleClickButtonFavoris}>{buttonFavoris}</button>
       </div>
       <Link
-        to={elem.comics.length !== 0 ? `/personnage/${elem._id}` : "#"}
+        to={handleLink}
         key={elem._id}
         style={{ textDecoration: "none" }}
         className="disabledCursor"
-        // data-tip=""
-        // data-for={elem.name}
-        // id="personnages-show"
       >
-        {/* <div id="personnages-show"> */}
         <img
           style={image}
           key={elem._id}
           className="image-img"
           src={picture}
           alt="Character"
-          //   onMouseOver={(e) => {
-          //   console.log(image + description + typeof setDescription);
-          //   console.log("Picture enter");
-          // setImage({ display: "none" });
-          // setDescription({ display: "block" });
-          //   console.log(image + description);
-          //   }}
-          // onMouseOut={(e) => {
-          // //   console.log("Picture leave");
-          //   setImage({ display: "block" });
-          //   setDescription({ display: "none" });
-          // }}
-          // data-tip=""
-          // data-for={elem.name}
         />
-        {/* <div className="personnages-name">{elem.name}</div> */}
-        <div
-          style={description}
-          className="image-description"
-          //   onMouseOut={(e) => {
-          //     //   console.log("Picture leave");
-          //     setImage({ display: "block" });
-          //     setDescription({ display: "none" });
-          //   }}
-        >
-          {/* <span>{elem.name}</span> */}
+
+        <div style={description} className="image-description">
           <p>{elem.description}</p>
         </div>
-        {/* </div> */}
-        <div className="image-name">{elem.name}</div>
+        {elem.title ? (
+          <div className="image-name">{elem.title}</div>
+        ) : (
+          <div className="image-name">{elem.name}</div>
+        )}
       </Link>
     </div>
   );
