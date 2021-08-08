@@ -24,7 +24,7 @@ const Comics = (props) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/comics${query}`
+          `https://marvel-bak.herokuapp.com/comics${query}`
         );
 
         setData(response.data);

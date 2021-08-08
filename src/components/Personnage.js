@@ -21,7 +21,9 @@ const Personnage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/comics/${id}`);
+        const response = await axios.get(
+          `https://marvel-bak.herokuapp.com/comics/${id}`
+        );
         setData(response.data);
         setTotalPages(Math.ceil(response.data.comics.length / limit));
         setIsLoading(false);
