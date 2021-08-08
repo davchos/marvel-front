@@ -53,7 +53,7 @@
     left: 0px;
     bottom: 0;
     font-size: 20px;
-    height: ;
+    height: 60vh;
     /* line-height: 260px; */
 
     /* width: 300px;
@@ -62,8 +62,8 @@
 
     text-align: center;
     /* display: none; */
-    width: 90%;
-    height: 520px;
+    width: 90vw;
+    /* height: 520px; */
     border-left: none;
     border-right: none;
     margin: 0px 20px;
